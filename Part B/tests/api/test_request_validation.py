@@ -77,6 +77,8 @@ class TestMalformedPayload:
 @pytest.mark.api
 class TestUnsupportedHttpMethods:
 
+    # BUG: server returns 200 instead of 405 for GET/place-bet
+    # Expected: 405
     def test_get_is_not_allowed(self, client):
         response = client.session.get(BET_URL)
         assert response.status_code == 405, (
